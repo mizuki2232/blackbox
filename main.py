@@ -40,11 +40,11 @@ def sendmail():
     msg['From'] = from_address
     msg['To'] = to_address
     msg['Date'] = formatdate(localtime=True)
-
-    smtp = smtplib.SMTP('localhost')
-    smtp.connect()
+    smtp = smtplib.SMTP('smtp.gmail.com', 587)
+    smtp.starttls()
+    smtp.login(from_address, os.environ["passwd"])
     smtp.sendmail(from_address, to_address, msg.as_string())
-    smtp.close()
+    smtp.quit()
 
 
 # getserial() works well in Raspberry pi
