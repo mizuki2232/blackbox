@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+import os
 import smtplib
 
 
@@ -9,8 +10,8 @@ from email.Header import Header
 from email.Utils import formatdate
 
 
-from_address = "yabai@com"
-to_address = "mizuki255@gmail.com"
+from_address = os.environ["from_address"]
+to_address = os.environ["to_address"]
 
 charset = 'ISO-2022-JP'
 subject = u'件名'
