@@ -29,9 +29,9 @@ desired_count = os.environ["desired_count"]
 from_address = os.environ["from_address"]
 to_address = os.environ["to_address"]
 
-charset = 'ISO-2022-JP'
-subject = u'件名'
-text = u'本文'
+charset = 'ISO-2022-JP' # replace with environment varialbe later
+subject = os.environ('mail_subject')
+text = os.environ('mail_text')
 
 
 def sendmail():
@@ -40,13 +40,14 @@ def sendmail():
     msg['From'] = from_address
     msg['To'] = to_address
     msg['Date'] = formatdate(localtime=True)
-
-    smtp = smtplib.SMTP()
-    smtp.connect()
+    smtp = smtplib.SMTP('smtp.gmail.com', 587)
+    smtp.starttls()
+    smtp.login(from_address, os.environ["passwd"])
     smtp.sendmail(from_address, to_address, msg.as_string())
-    smtp.close()
+    smtp.quit()
 
 
+# getserial() works well in Raspberry pi
 def getserial():
     # Extract serial from cpuinfo file
     cpuserial = "0000000000000000"
@@ -110,7 +111,7 @@ if __name__ == "__main__":
                     if count == disired_count:
                         try:
                             print("Send mail!")
-                            """send mail"""
+                            sendmail()
                             print("reset count")
                             count = 0
 
