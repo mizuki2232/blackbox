@@ -1,1 +1,5 @@
+tes
+*.swp
+*.pyc
+*sqlite*
 settings_local.py
