@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+// File API実装チェック
+if not(window.File) {
+    window.alert("Your Browser not supported.Please update or change browser,google chrome is recommended");
+}
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>
+$(function(){
+    $.getJSON("config.json", function(data){
+        var
+            ulObj = $("#config"),
+            len = data.length;
+        for(var i = 0; i < len; i++){
+            ulObj.append($("<li>").attr({"id":data[i].id}).text(data[i].name));
+        }
+    });
+});
+</script>
+
+
+
+
+</head>
+
+<body>
 <h1>Config page</h1l
 <hr><br>
 <button type="button" 
@@ -5,19 +34,15 @@ onclick="location.href='index_jp.html'">日本語表示</button>
 <br><br>
 <h2>What object to be watched?</h2>
 <hr>
-pull down menu
+<ul id=config></ul>
 <h2>Alert Setting</h2>
 <hr>
 <h3>Desired count</h3>
 <hr>
+<h3>Desired wait time</h3>
+<hr>
 <h3>Desired mail address</h3>
 <hr>
 
-<script type="text/javascript">
-
-// File API実装チェック
-if not(window.File) {
-    window.alert("Your Browser not supported.Please update or change browser,google chrome is recommended");
-}
-
-</script>
+</body>
+</html>
