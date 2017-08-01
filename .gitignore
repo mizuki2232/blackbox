@@ -1,6 +1,6 @@
 config.json
 tes
-*.swp
+*.sw*
 *.pyc
 *sqlite*
 settings_local.py

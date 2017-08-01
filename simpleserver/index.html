@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/current_setting.js"></script>
 </head>
 
 <body>
-<h1>Config page</h1l
+<h1>Config page</h1>
 <hr><br>
 <button type="button" 
-onclick="location.href='index_jp.html'">日本語表示</button>
+onclick="location.href='index_jp.html'">japanese</button>
 <br><br>
+
+<h2>Current Setting</h2>
+<hr>
+<table cellpadding="0" cellspacing="0" border="1" class="tbl">
+<col width="5%" />
+<col width="15%" />
+<tbody>
+<tr>
+<th></th>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2>What object to be watched?</h2>
 <hr>
-<ul id=config></ul>
+<br>
+<form name="Form" method="POST" action="/cgi-bin/form.py">
+<select name="object">
+<option value="1" selected>human</option>
+<option value="2">dog</option>
+<option value="3">cat</option>
+</select>
+
 <h2>Alert Setting</h2>
 <hr>
-<h3>Desired count</h3>
+<br>
+<h3>Desired Count</h3>
 <hr>
-<h3>Desired wait time</h3>
+<br>
+<input type="text" name="お名前" value="" size="30"> 
+<h3>Desired Wait Time</h3>
 <hr>
-<h3>Desired mail address</h3>
+<br>
+ <input type="text" name="お名前" value="" size="30"> 
+<h3>Desired Mail Address</h3>
 <hr>
-
+<br>
+<input type="text" name="お名前" value="" size="30"> 
+<br>
+<br>
+<br>
+<input type="submit" value="Save setting" />
+</form>
 </body>
 </html>
