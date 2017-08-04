@@ -1,11 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import boto3
-import cv2
 import json
-import os
-import sys
 import smtplib
 import time
 
@@ -14,6 +10,9 @@ from email.MIMEText import MIMEText
 from email.Header import Header
 from email.Utils import formatdate
 
+
+import cv2
+import boto3
 
 config_json = open('json/config.json', 'r')
 config = json.load(config_json)
@@ -45,11 +44,9 @@ for attr in config.get("list"):
 client = boto3.client('rekognition')
 s3 = boto3.resource('s3')
 
-cpuserial = getserial()
-capture_image = cpuserial
 count = 0
 
-charset = 'ISO-2022-JP' # replace with environment varialbe later
+charset = 'ISO-2022-JP'  # replace with environment varialbe later
 
 
 def sendmail():
@@ -70,16 +67,19 @@ def getserial():
     # Extract serial from cpuinfo file
     cpuserial = "0000000000000000"
     try:
-        f = open('/proc/cpuinfo','r')
+        f = open('/proc/cpuinfo', 'r')
         for line in f:
-            if line[0:6]=='Serial':
+            if line[0:6] == 'Serial':
                 cpuserial = line[10:26]
         f.close()
     except:
-      cpuserial = "ERROR000000000"
+        cpuserial = "ERROR000000000"
 
     return cpuserial
 
+
+identity = getserial()
+capture_image = identity
 
 if __name__ == "__main__":
 
@@ -112,9 +112,7 @@ if __name__ == "__main__":
         print("=================================================")
         print("")
 
-
         for i in response['Labels']:
-
             if i['Confidence'] > 12:
 
                 print("")
@@ -124,10 +122,10 @@ if __name__ == "__main__":
                 print("")
 
                 if i['Name'] == object:
-                    print("Desired object [" + object  + "] is Detected.")
+                    print("Desired object [" + object + "] is Detected.")
 
                     count += 1
-                    if count == disired_count:
+                    if count == desired_count:
                         try:
                             print("Send mail!")
                             sendmail()
