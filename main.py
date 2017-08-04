@@ -5,7 +5,6 @@ import json
 import smtplib
 import time
 
-
 from email.MIMEText import MIMEText
 from email.Header import Header
 from email.Utils import formatdate
