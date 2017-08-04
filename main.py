@@ -3,6 +3,7 @@
 
 import boto3
 import cv2
+import json
 import os
 import sys
 import smtplib
@@ -14,24 +15,38 @@ from email.Header import Header
 from email.Utils import formatdate
 
 
-bucket_name = os.environ["bucket_name"]
+config_json = open('json/config.json', 'r')
+config = json.load(config_json)
+
+
+for attr in config.get("list"):
+    if attr.get("id") == "Watch_Object":
+        object = attr.get("body")
+    elif attr.get("id") == "Desired_Count":
+        desired_count = attr.get("body")
+    elif attr.get("id") == "Desired_Wait_time":
+        desired_wait_time = attr.get("body")
+    elif attr.get("id") == "Desired_Mail_Address":
+        to_address = attr.get("body")
+    elif attr.get("id") == "bucket_name":
+        bucket_name = attr.get("body")
+    elif attr.get("id") == "from_address":
+        from_address = attr.get("body")
+    elif attr.get("id") == "mail_subject":
+        subject = attr.get("body")
+    elif attr.get("id") == "mail_text":
+        text = attr.get("body")
+    else:
+        pass
+
 client = boto3.client('rekognition')
 s3 = boto3.resource('s3')
 
-object = os.environ["object_name"]
-desired_count = os.environ["desired_count"]
 cpuserial = getserial()
 capture_image = cpuserial
 count = 0
-object = os.environ["object_name"]
-desired_count = os.environ["desired_count"]
-
-from_address = os.environ["from_address"]
-to_address = os.environ["to_address"]
 
 charset = 'ISO-2022-JP' # replace with environment varialbe later
-subject = os.environ('mail_subject')
-text = os.environ('mail_text')
 
 
 def sendmail():

@@ -23,6 +23,18 @@
         {
             "body": "aaa@gmail.com",
             "id": "from_address"
+        },
+        {
+            "body": "Alert Message from your boarderman",
+            "id": "mail_subject"
+        },
+        {  
+            "body": "Desired Count Archieved.",
+            "id": "mail_text"
+        },
+        {
+            "body": "passwd",
+            "id": "passwd"
         }
     ]
 }
