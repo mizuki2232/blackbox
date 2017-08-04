@@ -36,8 +36,11 @@ for attr in config.get("list"):
         subject = attr.get("body")
     elif attr.get("id") == "mail_text":
         text = attr.get("body")
+    elif attr.get("id") == "passwd":
+        passwd = attr.get("body")
     else:
         pass
+
 
 client = boto3.client('rekognition')
 s3 = boto3.resource('s3')
@@ -57,7 +60,7 @@ def sendmail():
     msg['Date'] = formatdate(localtime=True)
     smtp = smtplib.SMTP('smtp.gmail.com', 587)
     smtp.starttls()
-    smtp.login(from_address, os.environ["passwd"])
+    smtp.login(from_address, passwd)
     smtp.sendmail(from_address, to_address, msg.as_string())
     smtp.quit()
 
@@ -82,6 +85,7 @@ if __name__ == "__main__":
 
     while True:
 
+        time.sleep(desired_wait_time)
         print("take picture...")
         c = cv2.VideoCapture(0)
         r, img = c.read()
@@ -132,6 +136,3 @@ if __name__ == "__main__":
 
                         except KeyboardInterrupt:
                             pass
-
-
-        time.sleep(1.5)
