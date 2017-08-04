@@ -1,6 +1,28 @@
-[
-    {"id":1,"name":"human"},
-    {"id":2:"3"},
-    {"id":3:"30"},
-    {"id":4:"aaa@love.com"}
-]
+{
+    "list": [
+        {
+            "body": "human",
+            "id": "Watch_Object"
+        },
+        {
+            "body": "1",
+            "id": "Desired_Count"
+        },
+        {
+            "body": "1",
+            "id": "Desired_Wait_Time"
+        },
+        {
+            "body": "sam@serverworks.co.jp",
+            "id": "Desired_Mail_Address"
+        },
+        {
+            "body": "brabrabra",
+            "id": "bucket_name"
+        },
+        {
+            "body": "aaa@gmail.com",
+            "id": "from_address"
+        }
+    ]
+}
