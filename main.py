@@ -13,7 +13,7 @@ from email.Utils import formatdate
 import cv2
 import boto3
 
-config_json = open('json/config.json', 'r')
+config_json = open('simpleserver/json/config.json', 'r')
 config = json.load(config_json)
 
 
@@ -21,9 +21,9 @@ for attr in config.get("list"):
     if attr.get("id") == "Watch_Object":
         object = attr.get("body")
     elif attr.get("id") == "Desired_Count":
-        desired_count = attr.get("body")
-    elif attr.get("id") == "Desired_Wait_time":
-        desired_wait_time = attr.get("body")
+        desired_count = int(attr.get("body"))
+    elif attr.get("id") == "Desired_Wait_Time":
+        desired_wait_time = int(attr.get("body"))
     elif attr.get("id") == "Desired_Mail_Address":
         to_address = attr.get("body")
     elif attr.get("id") == "bucket_name":
@@ -78,9 +78,11 @@ def getserial():
 
 
 identity = getserial()
-capture_image = identity
+capture_image = identity + ".png"
+
 
 if __name__ == "__main__":
+
 
     while True:
 

@@ -4,3 +4,4 @@ tes
 *.pyc
 *sqlite*
 settings_local.py
+*.png
